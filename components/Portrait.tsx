@@ -3,8 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 export default function Portrait() {
   return (
     <motion.div
@@ -16,7 +14,7 @@ export default function Portrait() {
       <div className="relative">
         <div className="overflow-hidden rounded-[1.75rem] border border-white/10">
           <Image
-            src={`${BASE_PATH}/julian.png`}
+            src="/julian.png"
             alt="Portrait of Julian Mendonca"
             width={900}
             height={1200}
