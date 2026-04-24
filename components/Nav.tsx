@@ -48,13 +48,6 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-
-        <a
-          href="#contact"
-          className="hidden rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-sm text-white/90 transition-all hover:border-accent/50 hover:text-white md:inline-flex"
-        >
-          Get in touch
-        </a>
       </nav>
     </header>
   );

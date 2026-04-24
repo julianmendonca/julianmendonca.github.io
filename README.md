@@ -1,28 +1,34 @@
 # Julian Mendonca — Portfolio
 
-Personal presentation site built with Next.js 15, TypeScript, Tailwind CSS and Framer Motion. Contact form is wired to the Resend API.
+Personal presentation site built with Next.js 15, TypeScript, Tailwind CSS and Framer Motion. Static site, no backend — deployed to GitHub Pages.
 
 ## Getting started
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in RESEND_API_KEY
 npm run dev
 ```
 
 The site will be at `http://localhost:3000`.
 
-## Contact form
+## How contact works
 
-The form posts to `/api/contact`. Without `RESEND_API_KEY` set, submissions are logged to the server console instead of sent — handy for local development. For production, set:
+No form, no backend, no third-party service. The Contact section shows the email address as a primary call-to-action: clicking it opens the visitor's default mail client via `mailto:`, and a Copy button lets them grab the address to use anywhere else.
 
-- `RESEND_API_KEY` — from https://resend.com/api-keys
-- `CONTACT_FROM_EMAIL` — a verified domain on your Resend account (falls back to `onboarding@resend.dev` for quick tests)
-- `CONTACT_TO_EMAIL` — where messages are delivered (defaults to `julianmendon@gmail.com`)
+To change the destination address or LinkedIn URL, edit the constants at the top of `components/Contact.tsx`.
+
+## Deployment (GitHub Pages)
+
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which runs `npm run build` and publishes the exported `out/` directory to GitHub Pages.
+
+One-time setup in the GitHub repo:
+
+1. Go to **Settings → Pages**
+2. Set **Source** to **GitHub Actions**
+
+Because this repo is named `julianmendonca/julianmendonca` (a user site), the published URL will be `https://julianmendonca.github.io/`.
 
 ## Scripts
 
 - `npm run dev` — start the dev server
-- `npm run build` — production build
-- `npm run start` — run the production build
-- `npm run lint` — Next.js lint
+- `npm run build` — produce the static `out/` bundle
