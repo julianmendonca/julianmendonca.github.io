@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Julian Mendonca — Senior Full-Stack Engineer</title>
+  <meta name="description" content="Senior Full-Stack Engineer. I build the systems companies run on — designed, shipped and monitored end to end.">
+  <meta property="og:title" content="Julian Mendonca — Senior Full-Stack Engineer">
+  <meta property="og:description" content="I build the systems companies run on.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231e3a8a'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23f6f5f1'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+  <style>
+    html, body { margin: 0; background: #f6f5f1; color: #14161b; font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1e3a8a; text-decoration: none; }
+    a:hover { color: #14285f; text-decoration: underline; text-underline-offset: 3px; }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+    .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .hero-in { animation: rise 900ms cubic-bezier(.2,.7,.2,1) both; }
+    .hero-in.d1 { animation-delay: 120ms; } .hero-in.d2 { animation-delay: 260ms; } .hero-in.d3 { animation-delay: 420ms; } .hero-in.d4 { animation-delay: 600ms; }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 700ms cubic-bezier(.2,.7,.2,1), transform 700ms cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .job { transition: transform 260ms cubic-bezier(.2,.7,.2,1), box-shadow 260ms cubic-bezier(.2,.7,.2,1); }
+    .job:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgba(20,22,27,.35); }
+    .job:hover .job-rail { transform: scaleY(1); }
+    .job-rail { transform: scaleY(.35); transform-origin: top; transition: transform 320ms cubic-bezier(.2,.7,.2,1); }
+    .chip { transition: background-color 200ms, color 200ms, transform 200ms; }
+    .chip:hover { transform: translateY(-2px); }
+    .cta { transition: transform 200ms cubic-bezier(.2,.7,.2,1), background-color 200ms; }
+    .cta:hover { transform: translateY(-2px); text-decoration: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-in, .reveal { animation: none; transition: none; opacity: 1; transform: none; }
+      .job, .chip, .cta, .job-rail { transition: none; }
+      .job:hover, .chip:hover, .cta:hover { transform: none; }
+    }
+    /* Responsive: the artboard is authored at desktop width; these rules take over on narrow windows and phones. */
+    @media (max-width: 900px) {
+      .grid12 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; gap: 22px !important; }
+      .span4, .span5, .span7, .span8, .span12 { grid-column: span 1 !important; }
+      .hero { height: auto !important; min-height: 0 !important; }
+      .hero-inner, .section { padding-left: 24px !important; padding-right: 24px !important; }
+      .hero-inner { padding-top: 28px !important; }
+      .hero-top { flex-wrap: wrap !important; row-gap: 14px !important; margin-bottom: 44px !important; }
+      .nav a { padding: 6px 0 !important; }
+      .hero-copy { gap: 26px !important; padding: 0 !important; }
+      .hero-eyebrow { line-height: 1.7 !important; }
+      .hero-title { font-size: clamp(40px, 9.5vw, 68px) !important; line-height: 1.05 !important; }
+      .hero-lede { font-size: 17px !important; line-height: 1.65 !important; }
+      .cta-row { margin-top: 6px !important; }
+      .hero-foot { margin-top: 44px !important; padding-bottom: 36px !important; }
+      .job { padding: 24px 20px 24px 24px !important; }
+    }
+    @media (max-width: 520px) {
+      .hero-title { font-size: clamp(34px, 11vw, 46px) !important; }
+      .cta-row { flex-wrap: wrap !important; }
+      .section { padding-top: 56px !important; }
+    }
+  </style>
+  <style>html { scroll-behavior: smooth; } @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }</style>
+</head>
+<body>
+<div style="width: 100%; min-height: 100vh; background: #f6f5f1;">
+
+  <!-- HERO — interactive mesh that the cursor dents -->
+  <section id="hero" class="hero" style="position: relative; height: 680px; overflow: hidden; background: #f6f5f1;">
+    <canvas id="mesh" class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-inner" style="position: relative; z-index: 2; max-width: 1120px; margin: 0 auto; padding: 56px 40px 0; display: flex; flex-direction: column; gap: 0; height: 100%; box-sizing: border-box; pointer-events: none;">
+      <div class="hero-top" style="display: flex; justify-content: space-between; align-items: center; pointer-events: auto;">
+        <span class="mono" style="font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #5b6170;">Julian Mendonca</span>
+        <div class="nav" style="display: flex; gap: 28px; font-size: 14px; font-weight: 500;">
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="hero-copy" style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px; max-width: 760px;">
+        <span class="mono hero-in d1 hero-eyebrow" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #1e3a8a; font-weight: 500;">Senior Full-Stack Engineer · Fintech &amp; Payments</span>
+        <h1 class="hero-in d2 hero-title" style="margin: 0; font-size: 88px; line-height: 1.0; letter-spacing: -0.035em; font-weight: 700; color: #14161b; text-wrap: balance;">I build the systems companies run on.</h1>
+        <p class="hero-in d3 hero-lede" style="margin: 0; font-size: 19px; line-height: 1.5; color: #3d434f; max-width: 620px; text-wrap: pretty;">6+ years shipping production software, 4+ of them owning core systems at a B2B fintech. I write the proposal, align product, operations and leadership, ship, and monitor.</p>
+        <div class="hero-in d4 cta-row" style="display: flex; gap: 14px; align-items: center; pointer-events: auto; margin-top: 6px;">
+          <a class="cta" href="#contact" style="display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border-radius: 8px; background: #1e3a8a; color: #ffffff; font-weight: 600; font-size: 15px;">Get in touch</a>
+          <a class="cta" href="#experience" style="display: inline-flex; align-items: center; height: 46px; padding: 0 18px; border-radius: 8px; border: 1px solid #c9cbd2; color: #14161b; font-weight: 500; font-size: 15px; background: rgba(255,255,255,.6);">See the work</a>
+        </div>
+      </div>
+      <div class="hero-foot" style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 28px;">
+        <span class="mono" style="font-size: 12px; color: #5b6170; letter-spacing: .06em;">Buenos Aires, Argentina · Remote</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="grid12 section" style="max-width: 1120px; margin: 0 auto; padding: 96px 40px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px; align-items: start;">
+    <div class="reveal span12" style="grid-column: span 12; display: flex; align-items: baseline; gap: 18px;">
+      <span class="mono" style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #1e3a8a;">About</span>
+      <span style="flex: 1; height: 1px; background: #dcdde2;"></span>
+    </div>
+    <div class="reveal span4" style="grid-column: span 4; display: flex; flex-direction: column; gap: 18px;">
+      <img src="portrait.jpg" alt="Julian Mendonca" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; display: block;">
+    </div>
+    <div class="reveal span8" style="grid-column: span 8; display: flex; flex-direction: column; gap: 20px;">
+      <p style="margin: 0; font-size: 26px; line-height: 1.35; letter-spacing: -0.01em; color: #14161b; text-wrap: pretty;">I turn ambiguous business problems into systems the company can configure instead of re-engineer.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3d434f; text-wrap: pretty;">Most recently I owned core systems at a B2B fintech — payments, credit, billing, ledgers — the kind of work where the number on the customer's screen has to match the number at the bank, every time. I've led multiple projects from proposal to production, worked across backend and frontend, and spent as much time aligning people as writing code.</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section" style="max-width: 1120px; margin: 0 auto; padding: 56px 40px 24px; display: flex; flex-direction: column; gap: 28px;">
+    <div class="reveal" style="display: flex; align-items: baseline; gap: 18px;">
+      <span class="mono" style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #1e3a8a;">Experience</span>
+      <span style="flex: 1; height: 1px; background: #dcdde2;"></span>
+    </div>
+
+    <article class="grid12 job reveal" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 32px 32px 32px 36px; border-radius: 12px; background: #ffffff; border: 1px solid #e6e7eb;">
+      <span class="job-rail" style="position: absolute; left: 0; top: 24px; bottom: 24px; width: 3px; border-radius: 3px; background: #1e3a8a;"></span>
+      <div class="span4" style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <h3 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em;">Keep</h3>
+        <span style="font-size: 15px; color: #3d434f;">Senior Full-Stack Engineer</span>
+        <span class="mono" style="font-size: 12.5px; color: #5b6170; margin-top: 6px;">May 2022 – Sep 2026 · Canada · Remote</span>
+        <p style="margin: 14px 0 0; font-size: 14px; line-height: 1.55; color: #5b6170;">B2B fintech — corporate card, working-capital lending, banking. Consultant via Capicua to Aug 2023, then direct hire.</p>
+      </div>
+      <div class="span8" style="grid-column: span 8; display: flex; flex-direction: column; gap: 14px; font-size: 15.5px; line-height: 1.55; color: #2a2f3a;">
+        <p style="margin: 0;">Owned the design and delivery of the platform's core systems, working directly with product, operations and management and leading projects from proposal to production.</p>
+        <ul style="margin: 4px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px;">
+          <li>Designed and built the <strong>credit limit system</strong>, unifying card and lending products under one configurable model with cross-product allocation, event-driven sync to the card processor and monitoring.</li>
+          <li>Designed and owned the <strong>rewards system</strong> — statement-anchored earning, points, four redemption types and per-plan configurable rates.</li>
+          <li>Designed the <strong>transaction model</strong> that became the single source of truth for card activity across statements, accounting, disputes and the customer app.</li>
+          <li>Led the <strong>statements</strong> roadmap — authoritative due dates, statement credit, extensions, PDF generation — and published the statement lifecycle events that downstream systems build on.</li>
+          <li>Designed an <strong>event-driven promotion engine</strong> so marketing campaigns ship as configuration; set the team's cross-module eventing pattern.</li>
+          <li>Delivered the platform side of the <strong>pricing and packaging launch</strong> to 600+ customers, coordinating closely with product, operations and customer success.</li>
+          <li>Recognized when an existing design had reached its limits, then <strong>scoped and planned the replacement, implemented it, and deprecated the old approach</strong>.</li>
+          <li>Ran bug bashes and launch communications, built self-service tooling for finance and operations, presented monthly incident reviews, interviewed candidates and mentored engineers.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="grid12 job reveal" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 28px 32px 28px 36px; border-radius: 12px; background: #ffffff; border: 1px solid #e6e7eb;">
+      <span class="job-rail" style="position: absolute; left: 0; top: 24px; bottom: 24px; width: 3px; border-radius: 3px; background: #1e3a8a;"></span>
+      <div class="span4" style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <h3 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em;">Capicua</h3>
+        <span style="font-size: 15px; color: #3d434f;">Full-Stack Developer</span>
+        <span class="mono" style="font-size: 12.5px; color: #5b6170; margin-top: 6px;">Apr 2021 – Aug 2023 · Remote</span>
+      </div>
+      <div class="span8" style="grid-column: span 8; font-size: 15.5px; line-height: 1.55; color: #2a2f3a;">
+        <p style="margin: 0;">Built features for <strong>Wurrly</strong>, a music-teaching platform, with Node.js/TypeScript, React, GraphQL (Apollo) and AWS S3; embedded with fintech client Keep from May 2022 until converting to a direct hire in Aug 2023.</p>
+      </div>
+    </article>
+
+    <article class="grid12 job reveal" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 28px 32px 28px 36px; border-radius: 12px; background: #ffffff; border: 1px solid #e6e7eb;">
+      <span class="job-rail" style="position: absolute; left: 0; top: 24px; bottom: 24px; width: 3px; border-radius: 3px; background: #1e3a8a;"></span>
+      <div class="span4" style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <h3 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em;">BrainDW</h3>
+        <span style="font-size: 15px; color: #3d434f;">Full-Stack Web Developer</span>
+        <span class="mono" style="font-size: 12.5px; color: #5b6170; margin-top: 6px;">Nov 2019 – Apr 2021 · Buenos Aires</span>
+      </div>
+      <div class="span8" style="grid-column: span 8; font-size: 15.5px; line-height: 1.55; color: #2a2f3a;">
+        <p style="margin: 0;">Shipped full-stack features on .NET backends and React frontends with ElasticSearch-backed search; maintained the Cypress end-to-end suite.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="grid12 section" style="max-width: 1120px; margin: 0 auto; padding: 72px 40px 24px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px;">
+    <div class="reveal span12" style="grid-column: span 12; display: flex; align-items: baseline; gap: 18px;">
+      <span class="mono" style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #1e3a8a;">Skills</span>
+      <span style="flex: 1; height: 1px; background: #dcdde2;"></span>
+    </div>
+    <div class="reveal span4" style="grid-column: span 4; display: flex; flex-direction: column; gap: 10px;">
+      <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5b6170;">Tools I reach for, and the way I work with the people around the code.</p>
+    </div>
+    <div class="reveal span8" style="grid-column: span 8; display: flex; flex-direction: column; gap: 28px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-size: 14px; font-weight: 600; color: #14161b;">Engineering</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">TypeScript</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Node.js</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">GraphQL</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">PostgreSQL</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">React</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Next.js</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Redis</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Event-driven architecture</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Clean Architecture</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Domain-Driven Design</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">AWS</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Datadog</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-size: 14px; font-weight: 600; color: #14161b;">Leadership &amp; collaboration</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Technical design proposals (RFCs)</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Project leadership</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Roadmap &amp; sprint planning</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Cross-functional communication</span>
+          <span class="chip mono" style="font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #ffffff; border: 1px solid #e0e1e6; color: #2a2f3a;">Mentoring &amp; code review</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section" style="max-width: 1120px; margin: 72px auto 0; padding: 0 40px 80px;">
+    <div class="grid12 reveal" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: center; padding: 44px 48px; border-radius: 16px; background: #14161b; color: #f6f5f1;">
+      <div class="span7" style="grid-column: span 7; display: flex; flex-direction: column; gap: 10px;">
+        <span class="mono" style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #a5b4fc;">Contact</span>
+        <h2 style="margin: 0; font-size: 34px; line-height: 1.15; letter-spacing: -0.02em; font-weight: 600; text-wrap: balance;">Open to senior full-stack and backend roles.</h2>
+      </div>
+      <div class="span5" style="grid-column: span 5; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+        <a class="cta" href="mailto:julianmendon@gmail.com" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 8px; background: #f6f5f1; color: #14161b; font-weight: 600; font-size: 15px;">julianmendon@gmail.com</a>
+        <div style="display: flex; gap: 22px; font-size: 14px;">
+          <a href="https://www.linkedin.com/in/julianmendonca/" target="_blank" rel="noopener noreferrer" style="color: #c7d2fe;">LinkedIn</a>
+          <a href="https://github.com/julianmendonca" target="_blank" rel="noopener noreferrer" style="color: #c7d2fe;">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 28px;" class="mono">
+      <span style="font-size: 12px; color: #5b6170;">Julian Mendonca</span>
+      <span style="font-size: 12px; color: #5b6170;">Spanish (native) · English (professional)</span>
+    </div>
+  </section>
+</div>
+<script>
+(function () {
+  var ACCENT = '#1e3a8a', SPACING = 26;
+  var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  // scroll reveals
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold: 0.12 });
+    reveals.forEach(function (e) { io.observe(e); });
+  } else { reveals.forEach(function (e) { e.classList.add('in'); }); }
+  // hero mesh: a woven grid of points tethered to home; the cursor dents it, springs pull it back
+  var hero = document.getElementById('hero'), c = document.getElementById('mesh'); if (!hero || !c) return;
+  var ctx = c.getContext('2d'), W = 0, H = 0, cols = 0, pts = [], t = 0, idle = 0, raf = null;
+  var mouse = { x: -1e9, y: -1e9, vx: 0, vy: 0, live: false };
+  function hex(h, a) { var v = parseInt(h.slice(1), 16); return 'rgba(' + ((v >> 16) & 255) + ',' + ((v >> 8) & 255) + ',' + (v & 255) + ',' + a + ')'; }
+  function seed() {
+    var s = SPACING; cols = Math.ceil(W / s) + 2; var rows = Math.ceil(H / s) + 2;
+    var ox = (W - (cols - 1) * s) / 2, oy = (H - (rows - 1) * s) / 2; pts = [];
+    for (var j = 0; j < rows; j++) for (var i = 0; i < cols; i++) { var hx = ox + i * s, hy = oy + j * s; pts.push({ hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0, d: 0 }); }
+  }
+  function resize() {
+    var r = hero.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    c.width = Math.max(1, Math.round(r.width * dpr)); c.height = Math.max(1, Math.round(r.height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); W = r.width; H = r.height; seed();
+  }
+  function move(x, y) { var r = hero.getBoundingClientRect(), nx = x - r.left, ny = y - r.top; if (mouse.live) { mouse.vx = nx - mouse.x; mouse.vy = ny - mouse.y; } mouse.x = nx; mouse.y = ny; mouse.live = true; idle = 0; }
+  function leave() { mouse.live = false; mouse.x = -1e9; mouse.y = -1e9; }
+  hero.addEventListener('mousemove', function (e) { move(e.clientX, e.clientY); });
+  hero.addEventListener('mouseleave', leave);
+  hero.addEventListener('touchmove', function (e) { var p = e.touches[0]; if (p) move(p.clientX, p.clientY); }, { passive: true });
+  hero.addEventListener('touchend', leave);
+  window.addEventListener('resize', resize);
+  function step() {
+    t += 1 / 60; idle += 1 / 60;
+    var R = 150, R2 = R * R;
+    var autoX = W * (0.5 + 0.42 * Math.sin(t * 0.35)), autoY = H * (0.5 + 0.28 * Math.cos(t * 0.27));
+    var useAuto = !reduced && !mouse.live && idle > 0.8;
+    var mx = useAuto ? autoX : mouse.x, my = useAuto ? autoY : mouse.y;
+    var push = useAuto ? 3.2 : 9 + Math.min(14, Math.hypot(mouse.vx || 0, mouse.vy || 0) * 0.35);
+    for (var k = 0; k < pts.length; k++) {
+      var p = pts[k], dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+      if (d2 < R2 && d2 > 0.01) { var d = Math.sqrt(d2), f = 1 - d / R, g = f * f * push; p.vx += dx / d * g; p.vy += dy / d * g; }
+      p.vx += (p.hx - p.x) * 0.045; p.vy += (p.hy - p.y) * 0.045; p.vx *= 0.86; p.vy *= 0.86; p.x += p.vx; p.y += p.vy; p.d = Math.hypot(p.x - p.hx, p.y - p.hy);
+    }
+    if (mouse.live) { mouse.vx *= 0.7; mouse.vy *= 0.7; }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var B = 8, edges = [], knots = [], b, k, i, p;
+    for (b = 0; b < B; b++) { edges.push([]); knots.push([]); }
+    for (k = 0; k < pts.length; k++) { p = pts[k]; b = Math.min(B - 1, Math.floor(Math.min(1, p.d / 22) * B)); if ((k + 1) % cols !== 0) edges[b].push(p, pts[k + 1]); if (k + cols < pts.length) edges[b].push(p, pts[k + cols]); knots[Math.min(B - 1, Math.floor(Math.min(1, p.d / 18) * B))].push(p); }
+    ctx.lineWidth = 1;
+    for (b = 0; b < B; b++) { var e = edges[b]; if (!e.length) continue; ctx.strokeStyle = hex(ACCENT, 0.06 + (b / (B - 1)) * 0.385); ctx.beginPath(); for (i = 0; i < e.length; i += 2) { ctx.moveTo(e[i].x, e[i].y); ctx.lineTo(e[i + 1].x, e[i + 1].y); } ctx.stroke(); }
+    for (b = 0; b < B; b++) { var ks = knots[b]; if (!ks.length) continue; var r = 1.1 + (b / (B - 1)) * 2.4; ctx.fillStyle = hex(ACCENT, 0.22 + (b / (B - 1)) * 0.78); ctx.beginPath(); for (i = 0; i < ks.length; i++) { ctx.moveTo(ks[i].x + r, ks[i].y); ctx.arc(ks[i].x, ks[i].y, r, 0, Math.PI * 2); } ctx.fill(); }
+    var g = ctx.createRadialGradient(W * 0.28, H * 0.5, 40, W * 0.28, H * 0.5, W * 0.62);
+    g.addColorStop(0, 'rgba(246,245,241,0.92)'); g.addColorStop(0.55, 'rgba(246,245,241,0.55)'); g.addColorStop(1, 'rgba(246,245,241,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  }
+  function loop() { step(); draw(); raf = requestAnimationFrame(loop); }
+  resize(); raf = requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
