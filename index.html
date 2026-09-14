@@ -140,9 +140,17 @@
         <h3 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em;">Capicua</h3>
         <span style="font-size: 15px; color: #3d434f;">Full-Stack Developer</span>
         <span class="mono" style="font-size: 12.5px; color: #5b6170; margin-top: 6px;">Apr 2021 – Aug 2023 · Remote</span>
+        <p style="margin: 14px 0 0; font-size: 14px; line-height: 1.55; color: #5b6170;">Software consultancy delivering web products for international clients.</p>
       </div>
-      <div class="span8" style="grid-column: span 8; font-size: 15.5px; line-height: 1.55; color: #2a2f3a;">
-        <p style="margin: 0;">Built features for <strong>Wurrly</strong>, a music-teaching platform, with Node.js/TypeScript, React, GraphQL (Apollo) and AWS S3; embedded with fintech client Keep from May 2022 until converting to a direct hire in Aug 2023.</p>
+      <div class="span8" style="grid-column: span 8; display: flex; flex-direction: column; gap: 14px; font-size: 15.5px; line-height: 1.55; color: #2a2f3a;">
+        <p style="margin: 0;">Most of my time went to <strong>Wurrly</strong>, a music-teaching platform — building the tools teachers and students used day to day, and presenting progress and demos directly to the client.</p>
+        <ul style="margin: 4px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px;">
+          <li>Built the <strong>video editing</strong> tools on <strong>ffmpeg</strong> — trimming, cutting and assembling clips.</li>
+          <li>Built a <strong>lyrics timestamping editor</strong>: play the track, mark where each line begins, and the app scrolls the lyrics in time while a student sings.</li>
+          <li>Built the <strong>classroom side</strong> — creating classes, setting assignments, grading submissions and uploading course assets.</li>
+          <li>Node.js and TypeScript on the backend, React, GraphQL with Apollo, and AWS S3 for media.</li>
+          <li>Embedded with fintech client Keep from May 2022 until converting to a direct hire in Aug 2023.</li>
+        </ul>
       </div>
     </article>
 
@@ -152,9 +160,15 @@
         <h3 style="margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em;">BrainDW</h3>
         <span style="font-size: 15px; color: #3d434f;">Full-Stack Web Developer</span>
         <span class="mono" style="font-size: 12.5px; color: #5b6170; margin-top: 6px;">Nov 2019 – Apr 2021 · Buenos Aires</span>
+        <p style="margin: 14px 0 0; font-size: 14px; line-height: 1.55; color: #5b6170;">Search, personalisation and e-commerce — .NET and SQL on the backend, React on the front.</p>
       </div>
-      <div class="span8" style="grid-column: span 8; font-size: 15.5px; line-height: 1.55; color: #2a2f3a;">
-        <p style="margin: 0;">Shipped full-stack features on .NET backends and React frontends with ElasticSearch-backed search; maintained the Cypress end-to-end suite.</p>
+      <div class="span8" style="grid-column: span 8; display: flex; flex-direction: column; gap: 14px; font-size: 15.5px; line-height: 1.55; color: #2a2f3a;">
+        <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px;">
+          <li>Built and tuned <strong>Elasticsearch-backed product search</strong> over C# and SQL. The work was relevance rather than plumbing — analyzers, stemming, synonyms, field boosting and ranking, so the right product came back first.</li>
+          <li>Captured behavioural data — what people viewed, clicked and bought — and built a <strong>hybrid recommendation engine</strong> on it: content-based matching on product attributes to cover new items with no history, with collaborative filtering taking over once there was enough interaction data.</li>
+          <li>Built <strong>personalised e-commerce screens</strong> in React.</li>
+          <li>Maintained the Cypress end-to-end suite.</li>
+        </ul>
       </div>
     </article>
   </section>
@@ -224,34 +238,44 @@
 (function () {
   var ACCENT = '#1e3a8a', SPACING = 26;
   var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  // scroll reveals
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold: 0.12 });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
     reveals.forEach(function (e) { io.observe(e); });
   } else { reveals.forEach(function (e) { e.classList.add('in'); }); }
-  // hero mesh: a woven grid of points tethered to home; the cursor dents it, springs pull it back
-  var hero = document.getElementById('hero'), c = document.getElementById('mesh'); if (!hero || !c) return;
-  var ctx = c.getContext('2d'), W = 0, H = 0, cols = 0, pts = [], t = 0, idle = 0, raf = null;
+
+  var hero = document.getElementById('hero'), c = document.getElementById('mesh');
+  if (!hero || !c) return;
+  var ctx = c.getContext('2d'), W = 0, H = 0, cols = 0, pts = [], t = 0, idle = 0;
   var mouse = { x: -1e9, y: -1e9, vx: 0, vy: 0, live: false };
   function hex(h, a) { var v = parseInt(h.slice(1), 16); return 'rgba(' + ((v >> 16) & 255) + ',' + ((v >> 8) & 255) + ',' + (v & 255) + ',' + a + ')'; }
   function seed() {
     var s = SPACING; cols = Math.ceil(W / s) + 2; var rows = Math.ceil(H / s) + 2;
     var ox = (W - (cols - 1) * s) / 2, oy = (H - (rows - 1) * s) / 2; pts = [];
-    for (var j = 0; j < rows; j++) for (var i = 0; i < cols; i++) { var hx = ox + i * s, hy = oy + j * s; pts.push({ hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0, d: 0 }); }
+    for (var j = 0; j < rows; j++) for (var i = 0; i < cols; i++) {
+      var hx = ox + i * s, hy = oy + j * s;
+      pts.push({ hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0, d: 0 });
+    }
   }
   function resize() {
     var r = hero.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
     c.width = Math.max(1, Math.round(r.width * dpr)); c.height = Math.max(1, Math.round(r.height * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); W = r.width; H = r.height; seed();
   }
-  function move(x, y) { var r = hero.getBoundingClientRect(), nx = x - r.left, ny = y - r.top; if (mouse.live) { mouse.vx = nx - mouse.x; mouse.vy = ny - mouse.y; } mouse.x = nx; mouse.y = ny; mouse.live = true; idle = 0; }
+  function move(x, y) {
+    var r = hero.getBoundingClientRect(), nx = x - r.left, ny = y - r.top;
+    if (mouse.live) { mouse.vx = nx - mouse.x; mouse.vy = ny - mouse.y; }
+    mouse.x = nx; mouse.y = ny; mouse.live = true; idle = 0;
+  }
   function leave() { mouse.live = false; mouse.x = -1e9; mouse.y = -1e9; }
   hero.addEventListener('mousemove', function (e) { move(e.clientX, e.clientY); });
   hero.addEventListener('mouseleave', leave);
   hero.addEventListener('touchmove', function (e) { var p = e.touches[0]; if (p) move(p.clientX, p.clientY); }, { passive: true });
   hero.addEventListener('touchend', leave);
   window.addEventListener('resize', resize);
+
   function step() {
     t += 1 / 60; idle += 1 / 60;
     var R = 150, R2 = R * R;
@@ -262,7 +286,9 @@
     for (var k = 0; k < pts.length; k++) {
       var p = pts[k], dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
       if (d2 < R2 && d2 > 0.01) { var d = Math.sqrt(d2), f = 1 - d / R, g = f * f * push; p.vx += dx / d * g; p.vy += dy / d * g; }
-      p.vx += (p.hx - p.x) * 0.045; p.vy += (p.hy - p.y) * 0.045; p.vx *= 0.86; p.vy *= 0.86; p.x += p.vx; p.y += p.vy; p.d = Math.hypot(p.x - p.hx, p.y - p.hy);
+      p.vx += (p.hx - p.x) * 0.045; p.vy += (p.hy - p.y) * 0.045;
+      p.vx *= 0.86; p.vy *= 0.86; p.x += p.vx; p.y += p.vy;
+      p.d = Math.hypot(p.x - p.hx, p.y - p.hy);
     }
     if (mouse.live) { mouse.vx *= 0.7; mouse.vy *= 0.7; }
   }
@@ -270,16 +296,34 @@
     ctx.clearRect(0, 0, W, H);
     var B = 8, edges = [], knots = [], b, k, i, p;
     for (b = 0; b < B; b++) { edges.push([]); knots.push([]); }
-    for (k = 0; k < pts.length; k++) { p = pts[k]; b = Math.min(B - 1, Math.floor(Math.min(1, p.d / 22) * B)); if ((k + 1) % cols !== 0) edges[b].push(p, pts[k + 1]); if (k + cols < pts.length) edges[b].push(p, pts[k + cols]); knots[Math.min(B - 1, Math.floor(Math.min(1, p.d / 18) * B))].push(p); }
+    for (k = 0; k < pts.length; k++) {
+      p = pts[k]; b = Math.min(B - 1, Math.floor(Math.min(1, p.d / 22) * B));
+      if ((k + 1) % cols !== 0) edges[b].push(p, pts[k + 1]);
+      if (k + cols < pts.length) edges[b].push(p, pts[k + cols]);
+      knots[Math.min(B - 1, Math.floor(Math.min(1, p.d / 18) * B))].push(p);
+    }
     ctx.lineWidth = 1;
-    for (b = 0; b < B; b++) { var e = edges[b]; if (!e.length) continue; ctx.strokeStyle = hex(ACCENT, 0.06 + (b / (B - 1)) * 0.385); ctx.beginPath(); for (i = 0; i < e.length; i += 2) { ctx.moveTo(e[i].x, e[i].y); ctx.lineTo(e[i + 1].x, e[i + 1].y); } ctx.stroke(); }
-    for (b = 0; b < B; b++) { var ks = knots[b]; if (!ks.length) continue; var r = 1.1 + (b / (B - 1)) * 2.4; ctx.fillStyle = hex(ACCENT, 0.22 + (b / (B - 1)) * 0.78); ctx.beginPath(); for (i = 0; i < ks.length; i++) { ctx.moveTo(ks[i].x + r, ks[i].y); ctx.arc(ks[i].x, ks[i].y, r, 0, Math.PI * 2); } ctx.fill(); }
+    for (b = 0; b < B; b++) {
+      var e = edges[b]; if (!e.length) continue;
+      ctx.strokeStyle = hex(ACCENT, 0.06 + (b / (B - 1)) * 0.385);
+      ctx.beginPath();
+      for (i = 0; i < e.length; i += 2) { ctx.moveTo(e[i].x, e[i].y); ctx.lineTo(e[i + 1].x, e[i + 1].y); }
+      ctx.stroke();
+    }
+    for (b = 0; b < B; b++) {
+      var ks = knots[b]; if (!ks.length) continue;
+      var r = 1.1 + (b / (B - 1)) * 2.4;
+      ctx.fillStyle = hex(ACCENT, 0.22 + (b / (B - 1)) * 0.78);
+      ctx.beginPath();
+      for (i = 0; i < ks.length; i++) { ctx.moveTo(ks[i].x + r, ks[i].y); ctx.arc(ks[i].x, ks[i].y, r, 0, Math.PI * 2); }
+      ctx.fill();
+    }
     var g = ctx.createRadialGradient(W * 0.28, H * 0.5, 40, W * 0.28, H * 0.5, W * 0.62);
     g.addColorStop(0, 'rgba(246,245,241,0.92)'); g.addColorStop(0.55, 'rgba(246,245,241,0.55)'); g.addColorStop(1, 'rgba(246,245,241,0)');
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
   }
-  function loop() { step(); draw(); raf = requestAnimationFrame(loop); }
-  resize(); raf = requestAnimationFrame(loop);
+  function loop() { step(); draw(); requestAnimationFrame(loop); }
+  resize(); requestAnimationFrame(loop);
 })();
 </script>
 </body>
